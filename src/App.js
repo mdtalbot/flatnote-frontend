@@ -41,7 +41,7 @@ class App extends Component {
         })
     }
   }
-  
+
   render() {
         const noteSearch = _.debounce((searchTerm) => {this.getNotes(searchTerm)}, 300)
     return (
@@ -50,10 +50,14 @@ class App extends Component {
         <Grid padded>
           <Grid.Row>
             <Grid.Column width={4}>
-              <Sidebar onNoteSelect={selectedNote => this.setState({ selectedNote })} notes={this.state.notes} />
+              <div className='sidebar-container'>
+                  <Sidebar onNoteSelect={selectedNote => this.setState({ selectedNote })} notes={this.state.notes} />
+              </div>
             </Grid.Column>
             <Grid.Column width={11}>
-              <NoteDetail note={this.state.selectedNote} />
+              <div className='detail-container'>
+                <NoteDetail note={this.state.selectedNote} />
+              </div>
             </Grid.Column>
           </Grid.Row>
       </Grid>
