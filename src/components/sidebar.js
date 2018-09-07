@@ -1,16 +1,17 @@
 import React from 'react';
 import ListItem from './listitem'
+import { List } from 'semantic-ui-react'
 
 const Sidebar = (props) => {
-  const noteItems = props.notes.map((note) => {
-    return (<ListItem
-      onNoteSelect={props.onNoteSelect} note={note} key={note.id}
-      />
-    )
-  })
-
-  return ( <ul className = "col-md-4 list-group" > {noteItems} </ul>
-  )
-}
+    return (
+      <List divided relaxed verticalAlign='middle' size='large'>
+        <List.Item><List.Header>
+          Create a New Note
+      </List.Header></List.Item>
+      {props.notes.map((note) => <ListItem
+      onNoteSelect={props.onNoteSelect} note={note} key={note.id}/>
+      )}
+    </List>
+    )}
 
 export default Sidebar;
