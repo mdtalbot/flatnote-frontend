@@ -35,7 +35,15 @@ export default class NewNoteForm extends React.Component {
 
   render() {
     return (
-      <Form></Form>
+      <Form>
+        <Form.Field>
+          <label>Title</label>
+          <input placeholder='Enter title here' />
+        </Form.Field>
+        <Form.Field>
+          <Form.Field label='Body' placeholer='Start typing here to create your note' control='textarea' rows='20' />
+        </Form.Field>
+      </Form>
     );
   }
 }
