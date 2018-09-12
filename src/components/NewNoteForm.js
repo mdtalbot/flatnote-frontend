@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 export default class NewNoteForm extends React.Component {
   constructor(props) {
@@ -41,8 +41,9 @@ export default class NewNoteForm extends React.Component {
           <input placeholder='Enter title here' />
         </Form.Field>
         <Form.Field>
-          <Form.Field label='Body' placeholer='Start typing here to create your note' control='textarea' rows='20' />
+          <Form.Field label='Body' placeholder='Start typing here to create your note.' control='textarea' rows='20' />
         </Form.Field>
+        <Button type='submit'>Save</Button>
       </Form>
     );
   }

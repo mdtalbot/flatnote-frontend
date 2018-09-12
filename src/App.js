@@ -6,9 +6,9 @@ import SearchBar from './components/searchbar'
 import _ from 'lodash'
 import { Grid } from 'semantic-ui-react'
 import NewNoteForm from './components/NewNoteForm'
+import {Switch, Route, Redirect } from 'react-router-dom'
 
 const noteAPI = 'http://localhost:4000/api/v1/notes'
-const userAPI = 'http://localhost:4000/api/v1/users'
 
 class App extends Component {
   constructor(props) {
