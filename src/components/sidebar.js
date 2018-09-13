@@ -5,7 +5,7 @@ import { List } from 'semantic-ui-react'
 const Sidebar = (props) => {
     return (
       <List divided relaxed verticalAlign='middle' size='large'>
-        <List.Item><List.Header>
+        <List.Item onClick={props.handleNewNoteClick}><List.Header>
           Create a New Note
       </List.Header></List.Item>
       {props.notes.map((note) => <ListItem

@@ -43,6 +43,10 @@ class App extends Component {
     }
   }
 
+  handleNewNoteClick = (event) => {
+    this.setState({ selectedNote: null})
+  }
+
   render() {
         const noteSearch = _.debounce((searchTerm) => {this.getNotes(searchTerm)}, 300)
     return (
@@ -52,7 +56,7 @@ class App extends Component {
           <Grid.Row>
             <Grid.Column width={4}>
               <div className='sidebar-container'>
-                  <Sidebar onNoteSelect={selectedNote => this.setState({ selectedNote })} notes={this.state.notes} />
+                <Sidebar onNoteSelect={selectedNote => this.setState({ selectedNote })} notes={this.state.notes} handleNewNoteClick={this.handleNewNoteClick}/>
               </div>
             </Grid.Column>
             <Grid.Column width={11}>

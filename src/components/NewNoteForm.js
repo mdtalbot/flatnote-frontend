@@ -35,14 +35,12 @@ export default class NewNoteForm extends React.Component {
 
   render() {
     return (
-      <Form>
-        <Form.Field>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Field onChange={this.handleChange} value={this.state.title}>
           <label>Title</label>
-          <input placeholder='Enter title here' />
+          <input name="title" placeholder='Enter title here' />
         </Form.Field>
-        <Form.Field>
-          <Form.Field label='Body' placeholder='Start typing here to create your note.' control='textarea' rows='20' />
-        </Form.Field>
+        <Form.Field onChange={this.handleChange} value={this.state.body} name="body" label='Body' placeholder='Start typing here to create your note.' control='textarea' rows='20' />
         <Button type='submit'>Save</Button>
       </Form>
     );
