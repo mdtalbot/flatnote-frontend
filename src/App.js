@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Sidebar from './components/sidebar'
-import NoteViewer from './components/NoteViewer'
+import Content from './components/Content'
 import SearchBar from './components/searchbar'
 import _ from 'lodash'
 import { Grid } from 'semantic-ui-react'
@@ -16,7 +16,6 @@ class App extends Component {
     this.state = {
       notes: [],
       selectedNote: null,
-      editable: false,
     }
 
     this.getNotes()
@@ -47,14 +46,6 @@ class App extends Component {
     this.setState({ selectedNote: null})
   }
 
-  toggleEditable = () => {
-    this.setState({ editable: !this.state.editable });
-  };
-
-  handleEditChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value })
-  }
-
   render() {
         const noteSearch = _.debounce((searchTerm) => {this.getNotes(searchTerm)}, 300)
     return (
@@ -69,7 +60,7 @@ class App extends Component {
             </Grid.Column>
             <Grid.Column width={11}>
               <div className='detail-container'>
-                {this.state.selectedNote === null ? <NewNoteForm /> : <NoteViewer note={this.state.selectedNote} editable={this.state.editable} toggleEditable={this.toggleEditable} handleEditChange={this.handleEditChange}
+                {this.state.selectedNote === null ? <NewNoteForm /> : <Content note={this.state.selectedNote}
                 />}
               </div>
             </Grid.Column>

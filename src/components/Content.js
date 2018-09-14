@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NoteEditor from './NoteEditor';
 import NoteViewer from './NoteViewer';
-import Instructions from './Instructions';
 
 class Content extends Component {
 
@@ -37,8 +36,6 @@ class Content extends Component {
           onEdit={this.toggleEdit}
         />
       );
-    } else {
-      return <Instructions />;
     }
   }
   render() {
