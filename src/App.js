@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Sidebar from './components/sidebar'
-import NoteDetail from './components/detail'
+import NoteViewer from './components/NoteViewer'
 import SearchBar from './components/searchbar'
 import _ from 'lodash'
 import { Grid } from 'semantic-ui-react'
 import NewNoteForm from './components/NewNoteForm'
-import {Switch, Route, Redirect } from 'react-router-dom'
 
 const noteAPI = 'http://localhost:4000/api/v1/notes'
 
@@ -16,7 +15,8 @@ class App extends Component {
 
     this.state = {
       notes: [],
-      selectedNote: null
+      selectedNote: null,
+      editable: false,
     }
 
     this.getNotes()
@@ -47,6 +47,14 @@ class App extends Component {
     this.setState({ selectedNote: null})
   }
 
+  toggleEditable = () => {
+    this.setState({ editable: !this.state.editable });
+  };
+
+  handleEditChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
   render() {
         const noteSearch = _.debounce((searchTerm) => {this.getNotes(searchTerm)}, 300)
     return (
@@ -61,7 +69,8 @@ class App extends Component {
             </Grid.Column>
             <Grid.Column width={11}>
               <div className='detail-container'>
-                {this.state.selectedNote === null ? <NewNoteForm /> : <NoteDetail note={this.state.selectedNote} />}
+                {this.state.selectedNote === null ? <NewNoteForm /> : <NoteViewer note={this.state.selectedNote} editable={this.state.editable} toggleEditable={this.toggleEditable} handleEditChange={this.handleEditChange}
+                />}
               </div>
             </Grid.Column>
           </Grid.Row>
