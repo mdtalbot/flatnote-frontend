@@ -1,13 +1,14 @@
 import React from 'react';
 import ListItem from './listitem'
-import { List } from 'semantic-ui-react'
+import { List, Button, Icon } from 'semantic-ui-react'
 
 const Sidebar = (props) => {
     return (
       <List divided relaxed verticalAlign='middle' size='large'>
-        <List.Item onClick={props.handleNewNoteClick}><List.Header>
-          Create a New Note
-      </List.Header></List.Item>
+        <Button fluid color="blue" className="new-note-button" icon onClick={props.handleNewNoteClick} labelPosition="left">
+          <Icon name="plus circle" />
+          Create a New Note</Button>
+        <br></br>
       {props.notes.map((note) => <ListItem
       onNoteSelect={props.onNoteSelect} note={note} key={note.id}/>
       )}

@@ -4,7 +4,7 @@ import { List } from 'semantic-ui-react'
 
 const ListItem = ({ note, onNoteSelect }) => {
   return (
-    <List.Item onClick={() => onNoteSelect(note)}>
+    <List.Item className='note-list-item' onClick={() => onNoteSelect(note)}>
       <List.Content>
         <List.Header>{note.title}</List.Header>
         <List.Description>Created on: {Moment(note.created_at).format('LLL')}

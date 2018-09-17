@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
+import { Input } from 'semantic-ui-react'
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {searchTerm: ''}
   }
   render() {
     return (
       <div>
-        <input className="form-control" type="text" placeholder="Enter a search term" value={this.state.searchTerm} onChange={event => this.onInputChange(event.target.value)} />
+        <Input fluid icon="search" size='small'
+          className="search-bar" name="search" type="text" placeholder="Enter a search term" value={this.props.search} onChange={this.props.handleSearchChange} />
       </div>
     )
-  }
-    onInputChange(searchTerm) {
-    this.setState({ searchTerm });
-    this.props.onSearchTermChange(searchTerm)
   }
 }
 

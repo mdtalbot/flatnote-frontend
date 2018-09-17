@@ -6,13 +6,14 @@ class Content extends Component {
 
   state = {
     edit: false,
-    note: {},
+    note: {}
   }
+
   static getDerivedStateFromProps(props, state) {
     if (state.note.id !== props.note.id) {
       return {
         edit: false,
-        note: props.note,
+        note: props.note
       }
     }
     return state;
@@ -20,6 +21,7 @@ class Content extends Component {
   toggleEdit = () => {
     this.setState({ edit: !this.state.edit });
   }
+
   renderContent = () => {
     if (this.state.edit) {
       return (
@@ -34,6 +36,7 @@ class Content extends Component {
         <NoteViewer
           note={this.props.note}
           onEdit={this.toggleEdit}
+          onDelete={this.props.onDelete}
         />
       );
     }

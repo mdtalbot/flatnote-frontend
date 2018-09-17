@@ -27,6 +27,7 @@ export default class NewNoteForm extends React.Component {
         body: this.state.body
       })
     })
+    .then()
   }
 
   handleChange = (event) => {

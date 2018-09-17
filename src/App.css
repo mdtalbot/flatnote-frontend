@@ -57,3 +57,16 @@
   height: 100;
   overflow: scroll
 }
+
+.search-bar {
+  width: 318px;
+  margin: 1em;
+}
+
+.note-list-item:hover {
+  background-color: lightblue
+}
+
+.new-note-button {
+  margin-bottom: 0.5em
+}

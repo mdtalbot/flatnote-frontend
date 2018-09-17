@@ -39,8 +39,8 @@ class NoteEditor extends Component {
           onChange={this.handleChange}
         />
         <div className="button-row">
-          <input className="button" type="submit" value="Save" />
-          <button type="button" onClick={this.props.onCancel}>Cancel</button>
+          <Button color="green" className="button" type="submit" value="Save">Save</Button>
+          <Button color="red" type="button" onClick={this.props.onCancel}>Cancel</Button>
         </div>
       </Form>
     );

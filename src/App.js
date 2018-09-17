@@ -16,10 +16,11 @@ class App extends Component {
     this.state = {
       notes: [],
       selectedNote: null,
+      search: ""
     }
-
-    this.getNotes()
+      this.getNotes();
   }
+
   getNotes(searchTerm = null) {
     if (searchTerm) {
       fetch(noteAPI)
@@ -33,9 +34,9 @@ class App extends Component {
     } else {
       fetch(noteAPI)
         .then(res => res.json())
-        .then(notes => {
+        .then(res => {
           this.setState({
-            notes: notes,
+            notes: [...res],
             selectedNote: null
           })
         })
@@ -46,21 +47,55 @@ class App extends Component {
     this.setState({ selectedNote: null})
   }
 
+  filteredNotes = () => {
+    return this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.search.toLowerCase()));
+  }
+
+  handleSearchChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+  }
+
+  saveNotes = (note) => {
+    fetch(`http://localhost:4000/api/v1/notes/${this.state.selectedNote.id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(
+        note
+      )
+    })
+      .then(res => {
+        this.getNotes();
+        this.setState({ notes: [...res]  });
+      })
+  }
+
+  deleteNote = (note) => {
+    fetch(`http://localhost:4000/api/v1/notes/${this.state.selectedNote.id}`, { method: 'DELETE' })
+      .then(res => {
+        this.getNotes();
+        this.setState({ notes: [...res] });
+      })
+  }
+
   render() {
-        const noteSearch = _.debounce((searchTerm) => {this.getNotes(searchTerm)}, 300)
+
     return (
       <div className='app-container'>
-      <SearchBar onSearchTermChange={noteSearch} />
+        <SearchBar handleSearchChange={this.handleSearchChange} search={this.state.search} />
         <Grid padded>
           <Grid.Row>
             <Grid.Column width={4}>
               <div className='sidebar-container'>
-                <Sidebar onNoteSelect={selectedNote => this.setState({ selectedNote })} notes={this.state.notes} handleNewNoteClick={this.handleNewNoteClick}/>
+                <Sidebar onNoteSelect={selectedNote => this.setState({ selectedNote })} notes={this.filteredNotes()} handleNewNoteClick={this.handleNewNoteClick}/>
               </div>
             </Grid.Column>
             <Grid.Column width={11}>
               <div className='detail-container'>
-                {this.state.selectedNote === null ? <NewNoteForm /> : <Content note={this.state.selectedNote}
+                {this.state.selectedNote === null ? <NewNoteForm /> : <Content note={this.state.selectedNote} onSave={this.saveNotes} onDelete={this.deleteNote}
                 />}
               </div>
             </Grid.Column>
@@ -72,3 +107,4 @@ class App extends Component {
 }
 
 export default App;
+
