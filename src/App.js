@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Sidebar from './components/sidebar'
+import Sidebar from './components/Sidebar'
 import Content from './components/Content'
-import SearchBar from './components/searchbar'
-import _ from 'lodash'
+import SearchBar from './components/Searchbar'
 import { Grid } from 'semantic-ui-react'
 import NewNoteForm from './components/NewNoteForm'
 
@@ -95,7 +94,7 @@ class App extends Component {
             </Grid.Column>
             <Grid.Column width={11}>
               <div className='detail-container'>
-                {this.state.selectedNote === null ? <NewNoteForm /> : <Content note={this.state.selectedNote} onSave={this.saveNotes} onDelete={this.deleteNote}
+                {this.state.selectedNote === null ? <NewNoteForm getNotes={this.getNotes} /> : <Content note={this.state.selectedNote} onSave={this.saveNotes} onDelete={this.deleteNote}
                 />}
               </div>
             </Grid.Column>

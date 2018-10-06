@@ -1,5 +1,5 @@
 import React from 'react';
-import ListItem from './listitem'
+import ListItem from './ListItem'
 import { List, Button, Icon } from 'semantic-ui-react'
 
 const Sidebar = (props) => {

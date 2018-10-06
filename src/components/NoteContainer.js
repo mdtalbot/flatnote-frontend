@@ -26,20 +26,7 @@ class NoteContainer extends Component {
   filteredNotes = () => {
     return this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.search.toLowerCase()));
   }
-  createNote = () => {
-    Adapter.postNote("default", "placeholder")
-      .then(res => {
-        const notes = [...this.state.notes, res];
-        this.setState({ notes });
-      })
-  }
-  saveNotes = (note) => {
-    Adapter.patchNote(note)
-      .then(res => {
-        this.loadNotes();
-        this.setState({ selectedNote: res });
-      })
-  }
+
   handleSelectNote = (id) => {
     const selectedNote = this.state.notes.find(note => note.id === id);
     this.setState({ selectedNote });
