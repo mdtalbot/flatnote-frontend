@@ -107,3 +107,4 @@ class App extends Component {
 
 export default App;
 
+//Make this a regular, stateless component
