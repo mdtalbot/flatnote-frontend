@@ -16,3 +16,7 @@ export const getNote = note => dispatch => (
     .then(newNote => dispatch(receiveNote(newNote)))
 );
 
+export const createNote = note => dispatch => (
+  noteAPI.createNote(note)
+    .then(newNote => dispatch(makeNote(newNote)))
+);
