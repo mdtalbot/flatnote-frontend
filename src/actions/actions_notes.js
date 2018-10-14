@@ -20,3 +20,43 @@ export const createNote = note => dispatch => (
   noteAPI.createNote(note)
     .then(newNote => dispatch(makeNote(newNote)))
 );
+
+export const updateNote = note => dispatch => (
+  noteAPI.updateNote(note)
+    .then(newNote => dispatch(patchNote(newNote)))
+);
+
+export const deleteNote = note => dispatch => (
+  noteAPI.deleteNote(note.id)
+    .then(newNote => dispatch(removeNote(newNote)))
+);
+
+export const receiveNotes = notes => ({
+  type: RECEIVE_ALL_NOTES,
+  notes
+});
+
+export const receiveNote = note => ({
+  type: RECEIVE_NOTE,
+  note
+});
+
+export const patchNote = note => ({
+  type: UPDATE_NOTE,
+  note
+});
+
+export const makeNote = newNote => ({
+  type: MAKE_NOTE,
+  newNote
+});
+
+export const removeNote = deletedNote => ({
+  type: DELETE_NOTE,
+  deletedNote
+});
+
+export const setCurrentNote = note => ({
+  type: CURRENT_NOTE,
+  note
+});
