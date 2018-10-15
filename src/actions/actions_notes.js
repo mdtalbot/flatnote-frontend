@@ -5,8 +5,6 @@ export const UPDATE_NOTE = "UPDATE_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const CURRENT_NOTE = "CURRENT_NOTE";
 
-const noteAPI = 'http://localhost:4000/api/v1/notes'
-
 export const getNotes = () => dispatch => (noteAPI.getNotes()
   .then(notes => dispatch(receiveNotes(notes)))
 );

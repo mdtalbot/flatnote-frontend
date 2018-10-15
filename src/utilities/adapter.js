@@ -34,3 +34,4 @@ export const updateNote = note => (
 export const deleteNote = id => (
   fetch(`http://localhost:4000/api/v1/notes/${id}`, { method: 'DELETE' })
 );
+
